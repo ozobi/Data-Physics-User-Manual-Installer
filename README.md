@@ -4,7 +4,7 @@
 - Click Start and run `PowerShell.exe` as administrator.
 - Type `Set-ExecutionPolicy Unrestricted`.
 
-  **Run these scripts in order from the `Installation` folder**
+  **Run these scripts in order**
   - `0-install_chocolatey.ps1`
   - `1-install_dependencies.ps1`
   - `2-download-repository.ps1`
