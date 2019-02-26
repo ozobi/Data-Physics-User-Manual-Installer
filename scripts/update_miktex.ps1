@@ -1,2 +1,3 @@
-mpm.exe --verbose --install memoir
-mpm.exe --verbose --update-db
+mpm.exe --verbose --admin --install memoir
+mpm.exe --verbose --admin --update-db
+mpm.exe --verbose --admin --update
