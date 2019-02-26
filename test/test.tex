@@ -1,0 +1,212 @@
+\documentclass[,openany,oneside,a4paper]{memoir}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{enumerate}
+\usepackage[dvipsnames]{xcolor}
+% use microtype if available
+\IfFileExists{microtype.sty}{\usepackage{microtype}}{}
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[utf8]{inputenc}
+\newcommand{\quotes}[1]{``#1''}
+
+\usepackage[hmargin=2.5cm,vmargin=2.5cm,paper=a4paper]{geometry}
+
+% Floating Images
+\usepackage{float}
+\floatplacement{figure}{H}
+
+%% Footnotes to endnotes
+%\usepackage{endnotes}
+%\let\footnote=\endnote
+
+% Fonts
+%\usepackage{lmodern}		% Default
+%\usepackage[math]{iwona}
+\usepackage{pxfonts}		% Nice font
+\usepackage[T1]{fontenc}
+
+% Fancy chapter style 
+% from ftp://ftp.dante.de/tex-archive/info/MemoirChapStyles/MemoirChapStyles.pdf
+\usepackage{color,calc,graphicx,soul,fourier}
+\definecolor{DPred}{RGB}{154,0,43}
+\makeatletter
+\newlength\dlf@normtxtw
+\setlength\dlf@normtxtw{\textwidth}
+\def\myhelvetfont{\def\sfdefault{mdput}}
+\newsavebox{\feline@chapter}
+\newcommand\feline@chapter@marker[1][4cm]{%
+\sbox\feline@chapter{%
+\resizebox{!}{#1}{\fboxsep=1pt%
+\colorbox{DPred}{\color{white}\bfseries\sffamily\thechapter}%
+}}%
+\rotatebox{90}{%
+\resizebox{%
+\heightof{\usebox{\feline@chapter}}+\depthof{\usebox{\feline@chapter}}}%
+{!}{\scshape\so\@chapapp}}\quad%
+\raisebox{\depthof{\usebox{\feline@chapter}}}{\usebox{\feline@chapter}}%
+}
+\newcommand\feline@chm[1][4cm]{%
+\sbox\feline@chapter{\feline@chapter@marker[#1]}%
+\makebox[0pt][l]{% aka \rlap
+\makebox[1cm][r]{\usebox\feline@chapter}%
+}}
+\makechapterstyle{daleif1}{
+\renewcommand\chapnamefont{\normalfont\Large\scshape\raggedleft\so}
+\renewcommand\chaptitlefont{\normalfont\huge\bfseries\scshape\color{DPred}}
+\renewcommand\chapternamenum{}
+\renewcommand\printchaptername{}
+\renewcommand\printchapternum{\null\hfill\feline@chm[2.5cm]\par}
+\renewcommand\afterchapternum{\par\vskip\midchapskip}
+\renewcommand\printchaptertitle[1]{\chaptitlefont\raggedleft ##1\par}
+}
+\makeatother
+\chapterstyle{daleif1}
+
+\makefootrule{plain}{\textwidth}{\normalrulethickness}{4pt}
+
+\setsecnumdepth{subsection}
+\settocdepth{subsection}
+
+%% Fancy headers needed?
+\let\footruleskip\undefined % Trick to make memoir class work with fancyhdr
+\usepackage{fancyhdr}% http://ctan.org/pkg/fancyhdr\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{}\chead{}\rhead{}
+%\lfoot{\textsc{}}\cfoot{}\rfoot{\textsc{} | \thepage}
+\lfoot{\textsc{\leftmark}}\cfoot{}\rfoot{\thepage}
+\renewcommand{\headrulewidth}{0.0pt}
+\renewcommand{\footrulewidth}{0.5pt}
+
+
+\usepackage{graphicx}
+% We will generate all images so they have a width .8\maxwidth. This means
+% that they will get their normal width if they fit onto the page, but
+% are scaled down if they would overflow the margins.
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+\else\Gin@nat@width\fi}
+\makeatother
+\let\Oldincludegraphics\includegraphics
+\renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+
+\ifxetex
+  \usepackage[setpagesize=false,	% page size defined by xetex
+              unicode=false,		% unicode breaks when used with xetex
+              xetex]{hyperref}
+\else
+  \usepackage[unicode=true]{hyperref}
+\fi
+\hypersetup{breaklinks=true,
+            bookmarks=true,
+            pdfauthor={},
+            pdftitle={},
+            colorlinks=true,
+            urlcolor={DPred},
+            linkcolor={DPred},
+            pdfborder={0 0 0}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\setcounter{secnumdepth}{0}
+
+\begin{document}
+
+\begin{titlingpage}
+%------------------------------------------------
+%	Top rules
+%------------------------------------------------
+\textcolor{DPred}{\rule{\textwidth}{3pt}}% Thick horizontal rule
+\vspace{0.05\textheight} % Whitespace
+
+%------------------------------------------------
+%	Logo
+%------------------------------------------------
+\begin{flushright}
+	\Oldincludegraphics[width=240px]{./logo.png}
+\end{flushright}
+\vspace{0.05\textheight} % Whitespace
+
+%------------------------------------------------
+%	Title
+%------------------------------------------------
+\begin{flushright}
+	{\textcolor{DPred}{\HUGE User Manual}}\\[\baselineskip] % Title Line 1
+	{\textcolor{DPred}{\HUGE Test File}}\\[\baselineskip] % Title Line 2
+	\vspace{0.02\textheight} % Whitespace
+	{\textcolor{gray}{\Huge Testing}}\\[\baselineskip] % Subtitle
+	{\textcolor{gray}{\Large Version 1.0 - \today}}\\[\baselineskip] % Version & Date
+\end{flushright}
+
+\vspace{0.1\textheight} % Whitespace
+
+%------------------------------------------------
+%	Image
+%------------------------------------------------
+\begin{center}
+	\Oldincludegraphics[width=400px]{./splash.png}
+\end{center}
+\vspace{0.05\textheight} % Whitespace
+\end{titlingpage}
+\clearpage
+
+\newpage
+
+{
+\hypersetup{linkcolor=black}
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\hypertarget{introduction}{%
+\chapter{Introduction}\label{introduction}}
+
+Brief introduction to the contents and utilization of this document.
+
+\hypertarget{scope}{%
+\section{Scope}\label{scope}}
+
+The Data Physics 900 Series Signal Analyzer provides measurement and
+analyzing tools that aid you making measurements with basic information
+to aid you in using your system effectively. This document describes how
+your Data Physics 900 Series Signal Analyzer (DP 930 Analyzer) operates
+and how to set it up and use it effectively.
+
+\begin{quote}
+This manual assumes you have a working familiarity with the Windows
+environment and have reviewed the specific information about the
+operating interface provided in the companion Getting Started manual. It
+further assumes you have a basic understanding of digital signal
+processing (ADC/DAC).
+\end{quote}
+
+This document defines the standard features and operation of the basic
+Data Physics 900 Series Signal Analyzer and various software optional
+products including:
+
+\begin{itemize}
+\tightlist
+\item
+  Auto Power Spectrum
+\item
+  Transfer Function
+\item
+  Synchronous Average
+\item
+  Histogram
+\item
+  Correlation
+\item
+  Order Tracking
+\item
+  Demodulation
+\item
+  Recorder
+\end{itemize}
+
+\hypertarget{howto}{%
+\section{How To Use This Manual}\label{howto}}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\end{document}
